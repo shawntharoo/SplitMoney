@@ -1,8 +1,8 @@
 package com.cherrye.splitmoney.util
 
-sealed class Result<out D, out E: Error> {
-    data class Success<out D>(val data: D): Result<D, Nothing>()
-    data class Error<out E: com.cherrye.splitmoney.util.Error>(val error: E): Result<Nothing, E>()
+sealed interface Result<out D, out E: Error> {
+    data class Success<out D>(val data: D): Result<D, Nothing>
+    data class Error<out E: com.cherrye.splitmoney.util.Error>(val error: E): Result<Nothing, E>
 }
 
 inline fun <T, E: Error, R> Result<T, E>.map(map: (T) -> R): Result<R, E> {

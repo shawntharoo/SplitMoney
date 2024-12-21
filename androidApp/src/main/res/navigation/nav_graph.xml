@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/launchScreenFragment">
+
+    <fragment
+        android:id="@+id/launchScreenFragment"
+        android:name="com.cherrye.splitmoney.android.screens.LaunchScreenFragment"
+        android:label="LaunchScreenFragment"
+        tools:layout="@layout/fragment_launch_screen">
+    </fragment>
+</navigation>

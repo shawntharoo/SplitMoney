@@ -32,6 +32,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -47,5 +50,6 @@ dependencies {
     implementation("dev.icerock.moko:mvvm-livedata-swiperefresh:0.16.1") // api mvvm-livedata, SwipeRefreshLayout library android extensions
     implementation("dev.icerock.moko:mvvm-databinding:0.16.1") // api mvvm-livedata, DataBinding support for Android
     implementation("dev.icerock.moko:mvvm-viewbinding:0.16.1")
+    implementation(libs.androidx.navigation.fragment)
     debugImplementation(libs.compose.ui.tooling)
 }
