@@ -52,6 +52,7 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
             implementation("io.insert-koin:koin-android:4.0.0")
+            implementation(libs.android.material)
         }
 
         val commonMain by getting {

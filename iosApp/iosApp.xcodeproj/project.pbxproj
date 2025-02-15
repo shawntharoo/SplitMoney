@@ -3,13 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
+		285164872D60608900789CFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285164862D60608000789CFB /* AppDelegate.swift */; };
+		285164892D6060D100789CFB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285164882D6060C600789CFB /* SceneDelegate.swift */; };
+		28609A5B2D181EB6007D2406 /* ApplicationStartup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28609A5A2D181EA6007D2406 /* ApplicationStartup.swift */; };
 		287F9D562CE9BF1400418B6D /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB29F030C32DCFEFCF42C8B9 /* Pods_iosApp.framework */; };
 		28A458752D03A39A00348028 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A458742D03A38700348028 /* HomeViewController.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
@@ -19,6 +22,9 @@
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		285164862D60608000789CFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		285164882D6060C600789CFB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		28609A5A2D181EA6007D2406 /* ApplicationStartup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationStartup.swift; sourceTree = "<group>"; };
 		28A458742D03A38700348028 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		6AF7ABD80BD2BA1CF446DFD0 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -27,6 +33,10 @@
 		BB29F030C32DCFEFCF42C8B9 /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC6D85C8107712BE7DA25E4A /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		2851648A2D60614A00789CFB /* ViewController */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewController; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		9D6C9A036D8E670C352BEB8F /* Frameworks */ = {
@@ -69,6 +79,10 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				2851648A2D60614A00789CFB /* ViewController */,
+				285164882D6060C600789CFB /* SceneDelegate.swift */,
+				285164862D60608000789CFB /* AppDelegate.swift */,
+				28609A5A2D181EA6007D2406 /* ApplicationStartup.swift */,
 				28A458742D03A38700348028 /* HomeViewController.swift */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ContentView.swift */,
@@ -111,6 +125,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2851648A2D60614A00789CFB /* ViewController */,
 			);
 			name = iosApp;
 			productName = iosApp;
@@ -194,7 +211,10 @@
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				28609A5B2D181EB6007D2406 /* ApplicationStartup.swift in Sources */,
+				285164872D60608900789CFB /* AppDelegate.swift in Sources */,
 				28A458752D03A39A00348028 /* HomeViewController.swift in Sources */,
+				285164892D6060D100789CFB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

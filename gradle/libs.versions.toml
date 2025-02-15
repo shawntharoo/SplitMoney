@@ -8,6 +8,9 @@ ktor = "2.3.12"
 resource = "0.23.0"
 navigationCompose = "2.8.3"
 navigationFragment = "2.8.5"
+ksp = "2.0.21-1.0.25"
+material = "1.13.0-alpha10"
+navigationUiKtx = "2.8.6"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -27,6 +30,9 @@ ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "k
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
 androidx-navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
+android-material = { module = "com.google.android.material:material", version.ref = "material" }
+androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -36,7 +42,8 @@ kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref =
 kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-multiplatform-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "resource"}
+multiplatform-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "resource" }
+kspModuele = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 
 [bundles]
