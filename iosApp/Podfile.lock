@@ -1,8 +1,16 @@
 PODS:
   - shared (1.0)
+  - XCoordinator (2.2.1):
+    - XCoordinator/Core (= 2.2.1)
+  - XCoordinator/Core (2.2.1)
 
 DEPENDENCIES:
   - shared (from `../shared`)
+  - XCoordinator (~> 2.2.1)
+
+SPEC REPOS:
+  trunk:
+    - XCoordinator
 
 EXTERNAL SOURCES:
   shared:
@@ -10,7 +18,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   shared: 96c066cfd2b0eab0963c51fee6cb6673e8cbba1a
+  XCoordinator: 2cf9f72e10998b7a4a4bbeac3d07e071ea82fca3
 
-PODFILE CHECKSUM: 78d6cc1b71b232202c48a29d4e6c34972c534c73
+PODFILE CHECKSUM: 10c1ffa8f184aaa75fa633e5cd3ac9ba66f52ca5
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2

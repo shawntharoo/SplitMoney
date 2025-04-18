@@ -10,4 +10,11 @@
         android:label="LaunchScreenFragment"
         tools:layout="@layout/fragment_launch_screen">
     </fragment>
+
+    <fragment
+        android:id="@+id/homeScreenFragment"
+        android:name="com.cherrye.splitmoney.android.screens.HomeScreenFragment"
+        android:label="HomeScreenFragment"
+        tools:layout="@layout/fragment_home_screen">
+    </fragment>
 </navigation>

@@ -5,9 +5,12 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.multiplatform.resources)
+
+    id("com.google.devtools.ksp")
+    id("de.jensklingenberg.ktorfit") version "2.1.0"
 }
 
-val ktor_version: String by project
+val ktorVersion = "2.1.0"
 
 kotlin {
     androidTarget {
@@ -49,13 +52,9 @@ kotlin {
         androidMain {
             dependsOn(commonMain.get())
         }
-        androidMain.dependencies {
-            implementation(libs.ktor.client.okhttp)
-            implementation("io.insert-koin:koin-android:4.0.0")
-            implementation(libs.android.material)
-        }
 
         val commonMain by getting {
+            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
             commonMain.dependencies {
                 //put your multiplatform dependencies here
                 implementation(libs.bundles.ktor)
@@ -66,11 +65,18 @@ kotlin {
                 api("dev.icerock.moko:mvvm-livedata-resources:0.16.1") // api mvvm-core, moko-resources, extensions for LiveData with moko-resources
                 api("dev.icerock.moko:mvvm-flow-resources:0.16.1")
                 api("dev.icerock.moko:kswift-runtime:0.7.0")
-                api("io.insert-koin:koin-core:4.0.0")
+                implementation("io.insert-koin:koin-core:3.5.6")
+                implementation("io.insert-koin:koin-annotations:1.3.0")
                 implementation("co.touchlab:kermit:2.0.4")
                 implementation("androidx.datastore:datastore-preferences-core:1.1.1")
                 implementation("dev.icerock.moko:resources:0.23.0")
+                implementation("de.jensklingenberg.ktorfit:ktorfit-lib:$ktorVersion")
             }
+        }
+
+        androidMain.dependencies {
+            implementation(libs.ktor.client.okhttp)
+            implementation(libs.android.material)
         }
 
         val iosArm64Main by getting
@@ -92,6 +98,7 @@ kotlin {
             implementation(libs.kotlin.test)
         }
     }
+    task("testClasses")
 }
 
 android {
@@ -104,6 +111,40 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+}
+
+tasks.matching { it.name == "kspKotlinIosArm64" }.configureEach {
+    dependsOn(tasks.getByName("generateMRiosArm64Main"))
+}
+
+tasks.matching { it.name == "kspKotlinIosSimulatorArm64" }.configureEach {
+    dependsOn(tasks.getByName("generateMRiosSimulatorArm64Main"))
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().configureEach {
+    if (name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
+}
+
+dependencies {
+    with("io.insert-koin:koin-ksp-compiler:1.3.1") {
+        add("kspAndroid", this)
+        add("kspIosArm64", this)
+        add("kspIosSimulatorArm64", this)
+    }
+//    add("kspCommonMainMetadata", "io.insert-koin:koin-ksp-compiler:2.0.0")
+//    add("kspCommonMainMetadata", "de.jensklingenberg.ktorfit:ktorfit-ksp:$ktorVersion")
+    with("de.jensklingenberg.ktorfit:ktorfit-ksp:$ktorVersion") {
+        add("kspAndroid", this)
+        add("kspIosArm64", this)
+        add("kspIosSimulatorArm64", this)
+    }
+}
+
+
+ksp {
+    arg("moduleName", project.name)
 }
 
 multiplatformResources {

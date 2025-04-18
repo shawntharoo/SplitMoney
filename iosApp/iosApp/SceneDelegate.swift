@@ -11,6 +11,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var coordinator: NavigationCoordinator1?
 
     func scene(
         _ scene: UIScene,
@@ -19,8 +20,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
+        
+        coordinator = NavigationCoordinator1()
+
+        let rootVC = LaunchViewController()
+        rootVC.coordinator = coordinator
+        
+        let navController = UINavigationController(rootViewController: rootVC)
+        coordinator?.navigationController = navController
+        
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = ViewController() // Set your main screen
+        window?.windowScene = windowScene
+        
+        NavigationSwiftService.mainAppRouter.setRoot(for: window!)
+        //window?.rootViewController = navController// Set your main screen
         window?.makeKeyAndVisible()
         
         print("Scene Connected")
