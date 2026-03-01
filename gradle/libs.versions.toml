@@ -12,6 +12,7 @@ navigationFragment = "2.8.5"
 ksp = "2.0.21-1.0.25"
 material = "1.13.0-alpha10"
 navigationUiKtx = "2.8.6"
+sqldelight = "2.0.1"
 
 [libraries]
 koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koinAnnotations" }
@@ -35,6 +36,12 @@ androidx-navigation-fragment = { group = "androidx.navigation", name = "navigati
 android-material = { module = "com.google.android.material:material", version.ref = "material" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 
+sqldelight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
+sqldelight-native = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
+sqldelight-jvm = { module = "app.cash.sqldelight:sqlite-driver", version.ref = "sqldelight" }
+sqldelight-coroutines = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqldelight" }
+sqldelight-common = { module = "app.cash.sqldelight:runtime", version.ref = "sqldelight" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -46,6 +53,7 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 multiplatform-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "resource" }
 kspModuele = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 
 
 [bundles]

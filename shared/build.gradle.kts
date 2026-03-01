@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.multiplatform.resources)
+    alias(libs.plugins.sqlDelight)
 
     id("com.google.devtools.ksp")
     id("de.jensklingenberg.ktorfit") version "2.1.0"
@@ -71,12 +72,17 @@ kotlin {
                 implementation("androidx.datastore:datastore-preferences-core:1.1.1")
                 implementation("dev.icerock.moko:resources:0.23.0")
                 implementation("de.jensklingenberg.ktorfit:ktorfit-lib:$ktorVersion")
+                implementation("com.benasher44:uuid:0.8.4")
+                implementation(libs.sqldelight.coroutines)
+                implementation(libs.sqldelight.common)
+
             }
         }
 
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
             implementation(libs.android.material)
+            implementation(libs.sqldelight.android)
         }
 
         val iosArm64Main by getting
@@ -91,6 +97,7 @@ kotlin {
 
             dependencies {
                 implementation(libs.ktor.client.darwin)
+                implementation(libs.sqldelight.native)
             }
         }
 
@@ -150,4 +157,12 @@ ksp {
 multiplatformResources {
     multiplatformResourcesPackage = "com.cherrye.splitmoney"
     disableStaticFrameworkWarning = true
+}
+
+sqldelight {
+    databases {
+        create("splitMoney") {
+            packageName = "com.cherrye.splitmoney"
+        }
+    }
 }

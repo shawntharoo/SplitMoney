@@ -30,7 +30,7 @@ class LaunchScreenFragment : BaseFragmentWithBindings<FragmentLaunchScreenBindin
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view?.findViewById<Button>(R.id.myButton)?.setOnClickListener {
+        view.findViewById<Button>(R.id.myButton)?.setOnClickListener {
             viewModel.navigateToNextScreen()
         }
     }

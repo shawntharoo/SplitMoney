@@ -58,4 +58,5 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.android.material)
     debugImplementation(libs.compose.ui.tooling)
+    implementation(libs.sqldelight.android)
 }
