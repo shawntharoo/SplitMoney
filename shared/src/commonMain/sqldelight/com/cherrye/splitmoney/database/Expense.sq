@@ -1,0 +1,23 @@
+CREATE TABLE expenses (
+    id TEXT NOT NULL PRIMARY KEY,
+    group_id TEXT NOT NULL REFERENCES groups(id),
+    title TEXT NOT NULL,
+    amount REAL NOT NULL,
+    payer_id INTEGER NOT NULL REFERENCES users(id)
+);
+
+selecteExpensesForGroup:
+SELECT * FROM expenses WHERE group_id = ?;
+
+insertExpense:
+INSERT INTO expenses(id, group_id, title, amount, payer_id)
+VALUES (?, ?, ?, ? ,?);
+
+deleteExpense:
+DELETE FROM expenses WHERE id =?;
+
+updateExpenseTitle:
+UPDATE expenses SET title = ? WHERE id = ?;
+
+selectExpenseById:
+SELECT * FROM expenses WHERE id = ?;

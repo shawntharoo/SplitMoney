@@ -1,0 +1,17 @@
+CREATE TABLE users (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL UNIQUE
+);
+
+insertUser:
+INSERT OR IGNORE INTO users(username)
+VALUES ( ?);
+
+selectAllUsers:
+SELECT * FROM users;
+
+selectUserById:
+SELECT * FROM users WHERE id = ?;
+
+selectUserByUserName:
+SELECT * FROM users WHERE username = ?;

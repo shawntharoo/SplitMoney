@@ -1,0 +1,41 @@
+CREATE TABLE groups (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    creator_id INTEGER NOT NULL REFERENCES users(id)
+);
+
+selectAllGroups:
+SELECT * FROM groups;
+
+selectGroupById:
+SELECT g.id, g.name,
+       u.id AS creator_id, u.username AS creator_username
+FROM groups g
+JOIN users u ON g.creator_id = u.id
+WHERE g.id = ?;
+
+
+insertGroup:
+INSERT INTO groups(name, creator_id) VALUES (?, ?);
+
+updateGroupName:
+UPDATE groups SET name = ? WHERE id = ?;
+
+deleteGroup:
+DELETE FROM groups WHERE id = ?;
+
+lastInsertRowId:
+SELECT last_insert_rowid();
+
+selectGroupsByCreator:
+SELECT g.id, g.name, u.id AS creator_id, u.username AS creator_username
+FROM groups g
+JOIN users u ON g.creator_id = u.id
+WHERE g.creator_id = ?;
+
+selectGroupsByMember:
+SELECT g.id, g.name, u.id AS creator_id, u.username AS creator_username
+FROM groups g
+JOIN users u ON g.creator_id = u.id
+JOIN group_members gm ON gm.group_id = g.id
+WHERE gm.user_id = ?;

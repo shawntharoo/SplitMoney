@@ -1,0 +1,16 @@
+CREATE TABLE expense_participants (
+    expense_id TEXT NOT NULL REFERENCES expenses(id),
+    user_id INTEGER NOT NULL REFERENCES users(id),
+    PRIMARY KEY(expense_id, user_id)
+);
+
+selectParticipantsForExpense:
+SELECT users.* FROM users
+JOIN expense_participants ON users.id = expense_participants.user_id
+WHERE expense_participants.expense_id = ?;
+
+insertParticipants:
+INSERT INTO expense_participants(expense_id, user_id) VALUES (?, ?);
+
+deleteParticipantsForExpense:
+DELETE FROM expense_participants WHERE  expense_id = ?;
