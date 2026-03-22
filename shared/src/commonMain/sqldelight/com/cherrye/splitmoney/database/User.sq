@@ -15,3 +15,18 @@ SELECT * FROM users WHERE id = ?;
 
 selectUserByUserName:
 SELECT * FROM users WHERE username = ?;
+
+isUserInAnyExpense:
+SELECT EXISTS(
+    SELECT 1 FROM expenses WHERE payer_id = ?
+    UNION ALL
+    SELECT 1 FROM expense_participants WHERE user_id = ?
+);
+
+isUserCreatorOfAnyGroup:
+SELECT EXISTS(
+    SELECT 1 FROM groups WHERE creator_id = ?
+);
+
+deleteUserById:
+DELETE FROM users WHERE id = ?;

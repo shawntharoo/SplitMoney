@@ -23,9 +23,9 @@ class AppCoordinator: NavigationCoordinator<AppRoutes> {
     override func prepareTransition(for route: AppRoutes) -> NavigationTransition {
         switch(route) {
         case .Launch:
-            return .push(LaunchViewController())
+            return .set([LaunchViewController()])
         case .Home:
-            return .push(HomeViewController())
+            return .set([MainTabBarController()])
         }
     }
 }

@@ -10,33 +10,57 @@ import UIKit
 import shared
 
 class LaunchViewController: BaseViewController<LaunchScreenViewModel> {
-    var coordinator: NavigationCoordinator1?
-    var localViewmodel: LaunchScreenViewModel?
-    override func setupInterfaceBinding(viewModel : LaunchScreenViewModel) {
-        print("Hello, iOS!")
+    private var localViewmodel: LaunchScreenViewModel?
+    private var hasNavigated = false
+
+    override func setupInterfaceBinding(viewModel: LaunchScreenViewModel) {
         self.localViewmodel = viewModel
         view.backgroundColor = .white
-        
-        let label = UILabel()
-        label.text = "Hello, UIKit!"
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 24)
-        label.frame = view.bounds
-        
-        let button = UIButton(type: .system)
-        button.setTitle("Go to Home", for: .normal)
-        button.addTarget(self, action: #selector(navigateToDetail), for: .touchUpInside)
-        button.frame = CGRect(x: 100, y: 200, width: 200, height: 50)
-        
-        view.addSubview(button)
-        view.addSubview(label)
-    }
-    
-    @objc func navigateToDetail() {
-        print("DEBUG: coordinator ->", self.coordinator ?? "❌ nil")
-        //self.coordinator?.navigateToHome()
-        guard let viewModel = localViewmodel else { return }
-        viewModel.navigateToNextScreen()
+        setupSplashUI()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        autoNavigateToHome()
+    }
+
+    private func setupSplashUI() {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.alignment = .center
+        stack.spacing = 12
+        stack.translatesAutoresizingMaskIntoConstraints = false
+
+        let iconView = UIImageView(image: UIImage(systemName: "dollarsign.circle.fill"))
+        iconView.tintColor = .systemGreen
+        iconView.contentMode = .scaleAspectFit
+        iconView.translatesAutoresizingMaskIntoConstraints = false
+        iconView.widthAnchor.constraint(equalToConstant: 82).isActive = true
+        iconView.heightAnchor.constraint(equalToConstant: 82).isActive = true
+
+        let titleLabel = UILabel()
+        titleLabel.text = "SplitMoney"
+        titleLabel.font = .boldSystemFont(ofSize: 32)
+        titleLabel.textColor = .label
+        titleLabel.textAlignment = .center
+
+        stack.addArrangedSubview(iconView)
+        stack.addArrangedSubview(titleLabel)
+        view.addSubview(stack)
+
+        NSLayoutConstraint.activate([
+            stack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stack.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+
+    private func autoNavigateToHome() {
+        if hasNavigated { return }
+        hasNavigated = true
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) { [weak self] in
+            guard let self = self, let viewModel = self.localViewmodel else { return }
+            viewModel.navigateToNextScreen()
+        }
+    }
 }

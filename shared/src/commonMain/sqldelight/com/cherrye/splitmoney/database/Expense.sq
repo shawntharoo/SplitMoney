@@ -9,6 +9,9 @@ CREATE TABLE expenses (
 selecteExpensesForGroup:
 SELECT * FROM expenses WHERE group_id = ?;
 
+selectExpenseIdsForGroup:
+SELECT id FROM expenses WHERE group_id = ?;
+
 insertExpense:
 INSERT INTO expenses(id, group_id, title, amount, payer_id)
 VALUES (?, ?, ?, ? ,?);
@@ -21,3 +24,6 @@ UPDATE expenses SET title = ? WHERE id = ?;
 
 selectExpenseById:
 SELECT * FROM expenses WHERE id = ?;
+
+deleteExpensesForGroup:
+DELETE FROM expenses WHERE group_id = ?;

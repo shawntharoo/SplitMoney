@@ -12,7 +12,6 @@
 		285164872D60608900789CFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285164862D60608000789CFB /* AppDelegate.swift */; };
 		285164892D6060D100789CFB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285164882D6060C600789CFB /* SceneDelegate.swift */; };
 		2851648D2D60617000789CFB /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2851648B2D60616400789CFB /* LaunchViewController.swift */; };
-		285164912D61575800789CFB /* NavigationCoordinator1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2851648F2D61573600789CFB /* NavigationCoordinator1.swift */; };
 		285164962D61B68300789CFB /* NavigationSwiftService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285164942D61B67400789CFB /* NavigationSwiftService.swift */; };
 		285164992D61BB8000789CFB /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285164972D61BB7B00789CFB /* AppCoordinator.swift */; };
 		28609A5B2D181EB6007D2406 /* ApplicationStartup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28609A5A2D181EA6007D2406 /* ApplicationStartup.swift */; };
@@ -30,7 +29,6 @@
 		285164862D60608000789CFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		285164882D6060C600789CFB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2851648B2D60616400789CFB /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
-		2851648F2D61573600789CFB /* NavigationCoordinator1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator1.swift; sourceTree = "<group>"; };
 		285164942D61B67400789CFB /* NavigationSwiftService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSwiftService.swift; sourceTree = "<group>"; };
 		285164972D61BB7B00789CFB /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		28609A5A2D181EA6007D2406 /* ApplicationStartup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationStartup.swift; sourceTree = "<group>"; };
@@ -64,14 +62,6 @@
 				058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		2851649A2D61C31500789CFB /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				2851648F2D61573600789CFB /* NavigationCoordinator1.swift */,
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 		2851649B2D61C33700789CFB /* ViewController */ = {
@@ -142,7 +132,6 @@
 				2861778B2D73EC4000CD4CFE /* Attributes */,
 				286177862D73E7FA00CD4CFE /* Protocols */,
 				2851649E2D61C3F300789CFB /* Services */,
-				2851649A2D61C31500789CFB /* Router */,
 				2851649B2D61C33700789CFB /* ViewController */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF8C242A565B00829871 /* Info.plist */,
@@ -269,9 +258,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -294,7 +287,6 @@
 				286177852D73D1D700CD4CFE /* BaseViewController.swift in Sources */,
 				286177882D73E81700CD4CFE /* ViewControllerBinding.swift in Sources */,
 				2861778D2D73EC5600CD4CFE /* LazyLoading.swift in Sources */,
-				285164912D61575800789CFB /* NavigationCoordinator1.swift in Sources */,
 				285164892D6060D100789CFB /* SceneDelegate.swift in Sources */,
 				285164962D61B68300789CFB /* NavigationSwiftService.swift in Sources */,
 			);

@@ -17,6 +17,10 @@ class SqlDelightExpenseParticipantsRepository(private val db: splitMoney) :
         expenseParticipantsQueries.insertParticipants(expenseId, user.id)
     }
 
+    override suspend fun deleteParticipant(expenseId: String, userId: Long) {
+        expenseParticipantsQueries.deleteParticipant(expenseId, userId)
+    }
+
     override suspend fun deleteParticipantsForExpense(expenseId: String) {
         expenseParticipantsQueries.deleteParticipantsForExpense(expenseId)
     }

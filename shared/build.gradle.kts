@@ -128,6 +128,10 @@ tasks.matching { it.name == "kspKotlinIosSimulatorArm64" }.configureEach {
     dependsOn(tasks.getByName("generateMRiosSimulatorArm64Main"))
 }
 
+tasks.matching { it.name == "kspKotlinIosX64" }.configureEach {
+    dependsOn(tasks.getByName("generateMRiosX64Main"))
+}
+
 tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().configureEach {
     if (name != "kspCommonMainKotlinMetadata") {
         dependsOn("kspCommonMainKotlinMetadata")

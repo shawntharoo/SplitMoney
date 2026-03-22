@@ -5,5 +5,7 @@ import com.cherrye.splitmoney.models.User
 interface UserRepository {
     suspend fun getUserById(userId: String): User?
     suspend fun getUserByUsername(username: String): User?
+    suspend fun getAllUsers(): List<User>
     suspend fun createUser(user: User)
+    suspend fun deleteUserIfAllowed(userId: Long): Boolean
 }

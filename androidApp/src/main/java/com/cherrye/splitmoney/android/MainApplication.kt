@@ -16,7 +16,6 @@ import com.cherrye.splitmoney.repository.interfaces.UserRepository
 import com.cherrye.splitmoney.services.dbCon.DatabaseDriverFactory
 import com.cherrye.splitmoney.services.navigation.NavigationCoreServices
 import com.cherrye.splitmoney.splitMoney
-import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
@@ -29,7 +28,7 @@ class MainApplication: Application() {
             defaultModule,
             module {
                 single {
-                    val driver = DatabaseDriverFactory(androidContext()).create()
+                    val driver = DatabaseDriverFactory(this@MainApplication).create()
                     splitMoney(driver)
                 }
 

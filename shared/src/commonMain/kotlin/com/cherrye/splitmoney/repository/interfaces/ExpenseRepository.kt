@@ -10,5 +10,6 @@ interface ExpenseRepository {
     suspend fun getExpensesForGroup(groupId: String): List<Expense>
     suspend fun updateExpenseTitle(expenseId: String, newTitle: String)
     suspend fun deleteExpense(expenseId: String)
+    suspend fun deleteExpensesForGroup(groupId: String)
     suspend fun getExpenseById(expenseId: String): Expense?
 }

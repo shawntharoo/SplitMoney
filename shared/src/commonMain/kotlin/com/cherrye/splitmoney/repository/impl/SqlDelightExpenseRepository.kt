@@ -108,6 +108,14 @@ class SqlDelightExpenseRepository(private val db: splitMoney): ExpenseRepository
         expenseQueries.deleteExpense(expenseId)
     }
 
+    override suspend fun deleteExpensesForGroup(groupId: String) {
+        val expenseIds = expenseQueries.selectExpenseIdsForGroup(groupId).executeAsList()
+        expenseIds.forEach { expenseId ->
+            participantQueries.deleteParticipantsForExpense(expenseId)
+        }
+        expenseQueries.deleteExpensesForGroup(groupId)
+    }
+
     override suspend fun getExpenseById(expenseId: String): Expense? {
         val expenseRow = expenseQueries.selectExpenseById(expenseId).executeAsOneOrNull()
 

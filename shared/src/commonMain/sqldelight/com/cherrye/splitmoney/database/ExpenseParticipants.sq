@@ -10,7 +10,10 @@ JOIN expense_participants ON users.id = expense_participants.user_id
 WHERE expense_participants.expense_id = ?;
 
 insertParticipants:
-INSERT INTO expense_participants(expense_id, user_id) VALUES (?, ?);
+INSERT OR IGNORE INTO expense_participants(expense_id, user_id) VALUES (?, ?);
 
 deleteParticipantsForExpense:
 DELETE FROM expense_participants WHERE  expense_id = ?;
+
+deleteParticipant:
+DELETE FROM expense_participants WHERE expense_id = ? AND user_id = ?;
