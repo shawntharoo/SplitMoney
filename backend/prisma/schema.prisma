@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 String                @id @default(uuid()) @db.Uuid
+  username           String                @unique
+  email              String?               @unique
+  passwordHash       String?               @map("password_hash")
+  displayName        String?               @map("display_name")
+  createdAt          DateTime              @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt          DateTime              @updatedAt @map("updated_at") @db.Timestamptz(6)
+  deletedAt          DateTime?             @map("deleted_at") @db.Timestamptz(6)
+  createdGroups      Group[]               @relation("GroupCreator")
+  groupMemberships   GroupMember[]
+  paidExpenses       Expense[]             @relation("ExpensePayer")
+  createdExpenses    Expense[]             @relation("ExpenseCreator")
+  expenseShares      ExpenseParticipant[]
+  refreshTokens      RefreshToken[]
+
+  @@map("users")
+}
+
+model Group {
+  id           String        @id @default(uuid()) @db.Uuid
+  name         String
+  creatorUserId String       @map("creator_user_id") @db.Uuid
+  createdAt    DateTime      @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt    DateTime      @updatedAt @map("updated_at") @db.Timestamptz(6)
+  deletedAt    DateTime?     @map("deleted_at") @db.Timestamptz(6)
+  creator      User          @relation("GroupCreator", fields: [creatorUserId], references: [id])
+  members      GroupMember[]
+  expenses     Expense[]
+
+  @@map("groups")
+}
+
+model GroupMember {
+  id        String   @id @default(uuid()) @db.Uuid
+  groupId   String   @map("group_id") @db.Uuid
+  userId    String   @map("user_id") @db.Uuid
+  joinedAt  DateTime @default(now()) @map("joined_at") @db.Timestamptz(6)
+  group     Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([groupId, userId])
+  @@map("group_members")
+}
+
+model Expense {
+  id              String               @id @default(uuid()) @db.Uuid
+  groupId         String               @map("group_id") @db.Uuid
+  title           String
+  amount          Decimal              @db.Decimal(12, 2)
+  payerUserId     String               @map("payer_user_id") @db.Uuid
+  createdByUserId String               @map("created_by_user_id") @db.Uuid
+  createdAt       DateTime             @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt       DateTime             @updatedAt @map("updated_at") @db.Timestamptz(6)
+  deletedAt       DateTime?            @map("deleted_at") @db.Timestamptz(6)
+  group           Group                @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  payer           User                 @relation("ExpensePayer", fields: [payerUserId], references: [id])
+  createdBy       User                 @relation("ExpenseCreator", fields: [createdByUserId], references: [id])
+  participants    ExpenseParticipant[]
+
+  @@map("expenses")
+}
+
+model ExpenseParticipant {
+  id          String    @id @default(uuid()) @db.Uuid
+  expenseId   String    @map("expense_id") @db.Uuid
+  userId      String    @map("user_id") @db.Uuid
+  shareAmount Decimal?  @map("share_amount") @db.Decimal(12, 2)
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  expense     Expense   @relation(fields: [expenseId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([expenseId, userId])
+  @@map("expense_participants")
+}
+
+model RefreshToken {
+  id         String    @id @default(uuid()) @db.Uuid
+  userId     String    @map("user_id") @db.Uuid
+  tokenHash  String    @map("token_hash")
+  expiresAt  DateTime  @map("expires_at") @db.Timestamptz(6)
+  revokedAt  DateTime? @map("revoked_at") @db.Timestamptz(6)
+  createdAt  DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  deviceName String?   @map("device_name")
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("refresh_tokens")
+}

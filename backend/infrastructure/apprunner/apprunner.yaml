@@ -1,0 +1,15 @@
+version: 1.0
+runtime: docker
+build:
+  commands:
+    build:
+      - docker build -t splitmoney-backend .
+run:
+  runtime-version: latest
+  command: node dist/main.js
+  network:
+    port: 4000
+    env: PORT
+  env:
+    - name: NODE_ENV
+      value: production

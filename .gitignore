@@ -1,38 +1,19 @@
-*.iml
-.gradle
-.idea
 .DS_Store
-build
-captures
-.externalNativeBuild
-.cxx
-local.properties
-xcuserdata
 
-.kotlin/
-.gradle
-**/build/
-!src/**/build/
+# Root-level generated caches
+/.gradle/
+/.kotlin/
+/build/
 
+# Frontend generated output
+/frontend/.gradle/
+/frontend/.kotlin/
+/frontend/build/
+/frontend/**/build/
+/frontend/iosApp/Pods/
 
-gradle-app.setting
-
-!gradle-wrapper.jar
-
-!gradle-wrapper.properties
-
-.gradletasknamecache
-
-.project
-
-.classpath
-
-*.DS_Store
-
-!.idea/
-.idea/*
-!.idea/codestyles/
-
-iosApp/Pods/*
-iosApp/Podfile.lock
-iosApp/iosApp.xcodeproj
+# Backend generated output
+/backend/node_modules/
+/backend/dist/
+/backend/.env
+/backend/.env.local
