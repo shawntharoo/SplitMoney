@@ -1,4 +1,6 @@
 .DS_Store
+.idea/
+local.properties
 
 # Root-level generated caches
 /.gradle/
@@ -8,8 +10,10 @@
 # Frontend generated output
 /frontend/.gradle/
 /frontend/.kotlin/
+/frontend/.idea/
 /frontend/build/
 /frontend/**/build/
+/frontend/local.properties
 /frontend/iosApp/Pods/
 
 # Backend generated output
